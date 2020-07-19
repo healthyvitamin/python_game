@@ -1,5 +1,7 @@
 import tkinter as tk
 
+#main>初始化game>按空白鍵觸發開始遊戲的start_game()>進入遊戲循環game_loop()
+
 class GameObject(object):
     def __init__(self, canvas, item):
         self.canvas = canvas
@@ -144,7 +146,7 @@ class Game(tk.Frame):
         self.canvas.bind('<Right>',
                          lambda _: self.paddle.move(10))
 
-    def setup_game(self): #會在球掉到下面要重新開始或一開始時呼叫
+    def setup_game(self): #此函式會在球掉到下面要重新開始或一開始時呼叫
            self.add_ball() #創建新的球的方法
            self.update_lives_text() #更新生命值的方法
            self.text = self.draw_text(300, 200,
