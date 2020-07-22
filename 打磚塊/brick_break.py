@@ -84,7 +84,7 @@ class Paddle(GameObject): #滑桿
         #只可移動在畫布之中，所以只有在他的左/右邊座標+位移量不超出畫布時才會做移動
         if coords[0] + offset >= 0 and coords[2] + offset <= width:
             super(Paddle, self).move(offset, 0)
-            if self.ball is not None: #這發生在還沒按空白鍵開始遊戲時，因為此時也可以移動滑桿，如果我們想要讓球也跟著滑桿移動，所以這裡讓球move根據x座標，在按下空白鍵觸發的start_game()時會把self.ball設成None
+            if self.ball is not None: #這發生在還沒按空白鍵開始遊戲時，因為此時也可以移動滑桿，如果我們想要讓球也跟著滑桿移動，所以這裡讓滑桿移動多少，球也跟著移動。  在按下空白鍵觸發的start_game()時會把self.ball設成None
                 self.ball.move(offset, 0)
 
 
@@ -125,7 +125,7 @@ class Game(tk.Frame):
         self.canvas.pack()
         self.pack()
 
-        self.items = {} #用於儲存所有"可碰撞的物件"
+        self.items = {} #用於儲存所有"可碰撞的物件"(滑桿、磚塊)
         self.ball = None
         self.paddle = Paddle(self.canvas, self.width/2, 326) #創建滑桿
         #將滑桿加入items中
